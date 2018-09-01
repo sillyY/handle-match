@@ -22,7 +22,7 @@ module.exports = function(data ,regs) {
         }
         for (let item of data) {
             if(key.test(item)){
-                value();
+                value(item);
             }
         }
     });
