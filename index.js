@@ -1,32 +1,57 @@
-module.exports = function(data ,regs) {
-    var dataType = Object.prototype.toString.call(data),
-        regsType = Object.prototype.toString.call(regs);
-    if(dataType !== '[object Array]') {
-        console.error('Error: database can only be Array.');
-        return;
+/** 
+var S = function( salary ){     
+    return salary * 4;
+};
+var A = function( salary ){
+    return salary * 3;
+};
+var B = function( salary ){
+     return salary * 2;
+};
+
+var calculateBonus = function( func, salary ){
+     return func( salary );
+};
+
+calculateBonus( S, 10000  );    // 输出：40000
+
+
+// 迭代器模式
+var each = function( ary, callback ){     
+    for ( var i = 0, l = ary.length; i < l; i++ ){     
+        callback.call( ary[i], i, ary[ i ] );  // 把下标和元素当作参数传给callback函数
     }
-    if(regsType !== '[object Map]') {
-        console.error('Error: regs can only be Map.');
-        return;
-    }
-    regs.forEach((value, key, map) => {
-        let keyType = Object.prototype.toString.call(key),
-            valueType = Object.prototype.toString.call(value);
-        if (keyType !== '[object RegExp]') {
-            console.error('Error: the key of regs can only be RegExp.');
-            return;
-        }
-        if(valueType !== '[object Function]') {
-            console.error('Error: the value of regs can only be Function.')
-            return;
-        }
-        for (let item of data) {
-            if(key.test(item)){
-                value(item);
-            }
-        }
-    });
+};
+
+each( [ 1, 2, 3 ], function( i, n ){
+    alert ( [ i, n ] );
+});
+*/
+
+// 方法
+
+var handleMatch = function(func, match) {
+    return func(match)
 }
 
+var each = function( ary, callback ){     
+    for ( var i = 0, l = ary.length; i < l; i++ ){     
+        callback.call( ary[i], i, ary[ i ] );  // 把下标和元素当作参数传给callback函数
+    }
+};
 
+// 使用
+const data = ['1', '2', '3']
 
+const regs = [/\d/, /[a-zA-Z]/]
+
+function match1(data) {
+    console.log(`${data} is number`);
+}
+function match2(data) {
+    console.log(`${data} is letter`);
+}
+
+each(regs, function(i, n) {
+    
+})
